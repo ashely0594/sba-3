@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
     const searchBox = document.querySelector(".search input");
     const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
 
-    if (searchBtn) { // Checks if searchBtn exists
+    if (searchBtn) { 
         searchBtn.addEventListener("click", () => {
             checkWeather(searchBox.value);
         });
@@ -24,11 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
             
             console.log(data);
 
-            if (data.cod === 200) { // Check if the response was successful
+            if (data.cod === 200) { 
                 document.querySelector(".city").innerHTML = data.name;
                 document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
                 document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
                 document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+                
+                // Update the weather icon based on the weather condition
+                if (data.weather[0].main === "Clouds") {
+                    weatherIcon.src = "images/clouds.jpg";
+                } else if (data.weather[0].main === "Clear") {
+                    weatherIcon.src = "images/clear.jpg";
+                } else if (data.weather[0].main === "Snow") {
+                    weatherIcon.src = "images/snow.jpg";
+                } else if (data.weather[0].main === "Wind") {
+                    weatherIcon.src = "images/wind-icon.jpg";
+                } else if (data.weather[0].main === "Rain") {
+                    weatherIcon.src = "images/rain-icon.png";
+                } else {
+                    weatherIcon.src = ""; // Default or placeholder image if condition not matched
+                }
             } else {
                 console.error("City not found:", data.message);
             }
@@ -36,8 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error fetching weather data:", error);
         }
     }
-
-    // Optional: Call checkWeather with a default city if desired.
-    
 });
+
+
 
