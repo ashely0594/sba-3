@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (data.weather[0].main === "Wind") {
                     weatherIcon.src = "images/wind-icon.jpg";
                 } else if (data.weather[0].main === "Rain") {
-                    weatherIcon.src = "images/rain-icon.png";
+                    weatherIcon.src = "images/rain-icon.jpg";
                 } else {
                     weatherIcon.src = ""; // Default or placeholder image if condition not matched
                 }
