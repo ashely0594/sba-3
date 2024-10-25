@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const apiKey = "d7c2ecb20b1a6ebd1306ddb780f7309b";
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q="; 
     const searchBox = document.querySelector(".search input");
     const searchBtn = document.querySelector(".search button");
     const weatherIcon = document.querySelector(".weather-icon");
@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (data.cod === 200) { 
                 document.querySelector(".city").innerHTML = data.name;
-                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°F"; 
                 document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-                document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+                document.querySelector(".wind").innerHTML = data.wind.speed + " mph"; 
                 
-                // Update the weather icon based on the weather condition
+                
                 if (data.weather[0].main === "Clouds") {
                     weatherIcon.src = "images/clouds.jpg";
                 } else if (data.weather[0].main === "Clear") {
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
 
 
 
